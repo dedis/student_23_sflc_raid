@@ -1,0 +1,29 @@
+#########################################
+# Only define the sources to be compiled
+#########################################
+
+####
+#### Main files
+####
+
+PROJ_SRCS := $(addprefix utils/,crypto.c disk.c dm.c file.c string.c input.c)
+PROJ_SRCS += $(addprefix header/,position_map.c vmb_seal.c vmb_unseal.c)
+PROJ_SRCS += $(addprefix actions/,create.c open.c close.c)
+PROJ_SRCS += $(addprefix commands/,init.c open.c close.c)
+PROJ_SRCS += $(addprefix cli/,dispatch.c init.c open.c close.c help.c)
+PROJ_SRCS += main.c
+
+PROJ_ROOT := src
+PROJ_SRCS := $(addprefix $(PROJ_ROOT)/,$(PROJ_SRCS))
+
+
+####
+#### Test files
+####
+
+TEST_SRCS := $(addprefix crypto/,test_aes256ctr.c test_aes256gcm.c)
+TEST_SRCS += $(addprefix actions/,test_create.c test_all_actions.c)
+TEST_SRCS += main.c
+
+TEST_ROOT := test
+TEST_SRCS := $(addprefix $(TEST_ROOT)/,$(TEST_SRCS))

@@ -1,0 +1,3 @@
+journal,12
+superblock,8
+directory,24

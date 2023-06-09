@@ -1,0 +1,3 @@
+invalid journal,16
+invalid superblock,18
+corrupted directory,13

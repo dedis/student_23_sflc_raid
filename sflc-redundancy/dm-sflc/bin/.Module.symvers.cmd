@@ -1,0 +1,1 @@
+cmd_/home/kilian/EPFL-MA2/PROJECT/sflc-redundancy/dm-sflc/src/../bin/Module.symvers := sed 's/\.ko$$/\.o/' /home/kilian/EPFL-MA2/PROJECT/sflc-redundancy/dm-sflc/src/../bin/modules.order | scripts/mod/modpost -m -a  -o /home/kilian/EPFL-MA2/PROJECT/sflc-redundancy/dm-sflc/src/../bin/Module.symvers -e -i Module.symvers   -T -

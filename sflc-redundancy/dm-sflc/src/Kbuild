@@ -1,0 +1,49 @@
+ #
+ #  Copyright The Shufflecake Project Authors (2022)
+ #  Copyright The Shufflecake Project Contributors (2022)
+ #  Copyright Contributors to the The Shufflecake Project.
+ #  
+ #  See the AUTHORS file at the top-level directory of this distribution and at
+ #  <https://www.shufflecake.net/permalinks/shufflecake-userland/AUTHORS>
+ #  
+ #  This file is part of the program dm-sflc, which is part of the Shufflecake 
+ #  Project. Shufflecake is a plausible deniability (hidden storage) layer for 
+ #  Linux. See <https://www.shufflecake.net>.
+ #  
+ #  This program is free software: you can redistribute it and/or modify it 
+ #  under the terms of the GNU General Public License as published by the Free 
+ #  Software Foundation, either version 3 of the License, or (at your option) 
+ #  any later version. This program is distributed in the hope that it will be 
+ #  useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General 
+ #  Public License for more details. You should have received a copy of the 
+ #  GNU General Public License along with this program. 
+ #  If not, see <https://www.gnu.org/licenses/>.
+ #
+ 
+MODULE_NAME := dm-sflc
+obj-m := $(MODULE_NAME).o
+
+
+OBJ_LIST := module.o
+OBJ_LIST += sysfs/sysfs.o sysfs/devices.o sysfs/volumes.o
+OBJ_LIST += target/target.o
+OBJ_LIST += device/device.o device/volumes.o device/rawio.o device/rmap.o device/iv.o
+OBJ_LIST += volume/volume.o volume/io.o volume/read.o volume/write.o volume/fmap.o
+OBJ_LIST += utils/string.o utils/bio.o utils/pools.o utils/workqueues.o
+OBJ_LIST += crypto/rand/rand.o crypto/rand/selftest.o
+OBJ_LIST += crypto/symkey/symkey.o crypto/symkey/skreq_pool.o crypto/symkey/selftest.o
+
+$(MODULE_NAME)-y += $(OBJ_LIST)
+
+
+# Normal CC flags
+ccflags-y := -O2 
+ccflags-y += -I$(src)
+ccflags-y += -Wall -Wno-declaration-after-statement
+ccflags-y += -fmacro-prefix-map=$(src)/=	# Strip the non-project directories from the filename used in the logs
+
+# Debug CC flags
+ccflags-$(CONFIG_SFLC_DEBUG) += -DDEBUG
+ccflags-$(CONFIG_SFLC_DEBUG) += -Og -g
+ccflags-$(CONFIG_SFLC_DEBUG) += -fsanitize=kernel-address -fno-omit-frame-pointer
