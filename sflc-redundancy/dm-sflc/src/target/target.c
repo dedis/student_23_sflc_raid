@@ -45,6 +45,8 @@
  *                       TYPES                       *
  *****************************************************/
 
+
+// sflc-raid START
 struct sflc_slice_corr_s
 {
 	sflc_Volume *donor_volume;
@@ -52,6 +54,7 @@ struct sflc_slice_corr_s
 	u32 slice_index;
 };
 typedef struct sflc_slice_corr_s sflc_Slice_Corr;
+// sflc-raid END
 
 /*****************************************************
  *           PRIVATE FUNCTIONS PROTOTYPES            *
@@ -63,7 +66,10 @@ static int sflc_tgt_map(struct dm_target *ti, struct bio *bio);
 static void sflc_tgt_ioHints(struct dm_target *ti, struct queue_limits *limits);
 static int sflc_tgt_iterateDevices(struct dm_target *ti, iterate_devices_callout_fn fn,
 								   void *data);
+
+// sflc-raid START
 int slice_transfusion(sflc_Device *dev, sflc_Volume *donor_volume, sflc_Volume *receiver_volume, u32 donoe_slice, u32 receiver_slice);
+// sflc-raid END
 
 /*****************************************************
  *           PUBLIC VARIABLES DEFINITIONS            *
@@ -81,8 +87,10 @@ struct target_type sflc_target = {
 	.iterate_devices = sflc_tgt_iterateDevices,
 };
 
+// sflc-raid START
 sflc_Volume *volume_links[SFLC_DEV_MAX_VOLUMES];
 char redundancy;
+// sflc-raid END
 
 /*****************************************************
  *           PRIVATE FUNCTIONS DEFINITIONS           *
@@ -101,6 +109,8 @@ static int sflc_tgt_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 	sflc_Device *dev;
 	sflc_Volume *vol;
 	int err;
+
+	// sflc-raid START
 	bool redundant_among;
 	bool redundant_within;
 
@@ -225,7 +235,7 @@ static int sflc_tgt_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 		}
 	}
 	pr_alert("VOLUME:%s:%u/%u\n", vol->vol_name, vol->mapped_slices, dev->tot_slices);
-	END DEBUG */
+	DEBUG */
 
 	if (redundant_among)
 	{
@@ -409,10 +419,12 @@ static int sflc_tgt_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 
 	/* No error if we made it here */
 	err = 0;
+	// sflc-raid END
 
 	return err;
 }
 
+// sflc-raid START
 int slice_transfusion(sflc_Device *dev, sflc_Volume *donor_volume, sflc_Volume *receiver_volume, u32 donor_slice, u32 receiver_slice)
 {
 	sector_t data_start_sector;
@@ -552,6 +564,7 @@ out:
 
 	return err;
 }
+// sflc-raid END
 
 /* Called every time we destroy a volume with the userland tool */
 static void sflc_tgt_dtr(struct dm_target *ti)
@@ -581,11 +594,13 @@ static void sflc_tgt_dtr(struct dm_target *ti)
 	/* End of critical section */
 	up(&sflc_dev_mutex);
 
+	// sflc-raid START
 	if (redundancy != 'n')
 	{
 		// Forgetting volume
 		volume_links[vol->vol_idx] = NULL;
 	}
+	// sflc-raid END
 
 	return;
 }
@@ -634,6 +649,7 @@ static int sflc_tgt_map(struct dm_target *ti, struct bio *bio)
 		return DM_MAPIO_KILL;
 	}
 
+	// sflc-raid START
 	if (redundancy != 'n' && vol->vol_idx != 0)
 	{
 		if (redundancy == 'a')
@@ -682,6 +698,7 @@ static int sflc_tgt_map(struct dm_target *ti, struct bio *bio)
 			return DM_MAPIO_KILL;
 		}
 	}
+	// sflc-raid END
 
 	return DM_MAPIO_SUBMITTED;
 }

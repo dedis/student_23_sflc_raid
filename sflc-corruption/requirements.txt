@@ -1,0 +1,2 @@
+matplotlib @ file:///opt/conda/conda-bld/matplotlib-suite_1660167928326/work
+numpy @ file:///opt/conda/conda-bld/numpy_and_numpy_base_1653915516269/work

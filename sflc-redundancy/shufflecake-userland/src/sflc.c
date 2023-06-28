@@ -172,8 +172,10 @@ void sflc_create_vols(bool no_randfill, char * real_dev_path, char ** pwd, int n
         sprintf(vol_names[vol_idx], "%d", vol_idx);
     }
 
+    // sflc-raid START
     /* Open volumes */
     sflc_open_vols(real_dev_path, vol_names, nr_pwd, pwd[nr_pwd - 1], true, redundant_among, redundant_within);
+    // sflc-raid END
 
     /* Close volumes */
     sflc_close_vols(real_dev_path);
@@ -231,10 +233,12 @@ void sflc_open_vols(char * real_dev_path, char ** vol_names, int nr_vols, char *
 
     /* Construct parameter list to pass to dm-sflc kernel module */
     char creation_flag = vol_creation ? 'c' : 'o';
+    // sflc-raid START
     char redundant = 'n';
     redundant = redundant_among ? 'a' : redundant;
     redundant = redundant_within ? 'w' : redundant;
     sprintf(param, "%s %s %d %c %llu %s %c", real_dev_path, handle, vol_idx, creation_flag, tot_slices, vek_hex, redundant);
+    // sflc-raid END
 
     if (!sflc_dmt_create(virt_dev_name, tot_slices * SFLC_LOG_SLICE_SIZE * SFLC_SECTOR_SCALE, param)){
         die("ERR: Error in dmt_create");

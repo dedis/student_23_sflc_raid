@@ -52,7 +52,7 @@ do
 done
 }
 
-for k in `seq 28 $n_tests`
+for k in `seq 1 $n_tests`
 do
 	echo "test $k"
 	

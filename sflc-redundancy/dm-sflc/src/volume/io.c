@@ -99,6 +99,7 @@ int sflc_vol_processBio(sflc_Volume *vol, struct bio *bio)
         return 0;
 }
 
+// sflc-raid START
 int sflc_vol_processBioRedundantlyAmong(sflc_Volume *vol, sflc_Volume *copy_vol, struct bio *bio)
 {
         sflc_vol_WriteWork *write_work;
@@ -246,6 +247,7 @@ int sflc_vol_processBioRedundantlyWithin(sflc_Volume *vol, struct bio *bio)
 
         return 0;
 }
+// sflc-raid END
 
 /*****************************************************
  *          PRIVATE FUNCTIONS DEFINITIONS            *

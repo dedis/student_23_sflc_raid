@@ -70,6 +70,7 @@ enum sflc_cmd
     SFLC_CMD_UNKNOWN
 };
 
+// sflc-raid START
 struct sflc_create_vols_args
 {
     bool		no_randfill;
@@ -89,6 +90,7 @@ struct sflc_open_vols_args
     int         nr_vols;
     char      * last_pwd;
 };
+// sflc-raid END
 
 struct sflc_close_vols_args
 {
@@ -135,6 +137,7 @@ int main(int argc, char ** argv)
     switch (args.cmd)
     {
 
+    // sflc-raid START
     case SFLC_CMD_CREATE_VOLS:
         print_green("Creating %d volumes on real device %s\n", 
                         args.create_vols.nr_pwd, args.create_vols.real_dev_path);
@@ -150,6 +153,7 @@ int main(int argc, char ** argv)
         				args.open_vols.nr_vols, args.open_vols.last_pwd, false,
                         args.open_vols.redundant_among, args.open_vols.redundant_within);
         break;
+    // sflc-raid END
 
     case SFLC_CMD_CLOSE_VOLS:
         print_green("Closing all volumes on real device %s\n", args.close_vols.real_dev_path);
@@ -225,6 +229,7 @@ static int parse_create_vols_args(int argc, char **argv, struct sflc_create_vols
 		args->no_randfill = false;
 	}
 
+    // sflc-raid START
     /* Check if argument is --redundant-* option */
 	if (strcmp(argv[0], OPTION_REDUNDANT_AMONG) == 0) {
 		// Save it in the struct, and advance the args
@@ -243,6 +248,7 @@ static int parse_create_vols_args(int argc, char **argv, struct sflc_create_vols
 		args->redundant_among = false;
         args->redundant_within = false;
 	}
+    // sflc-raid END
 
     /* Check that there are at least 2 remaining arguments (device and at least one password) */
     if (argc < 2) {
@@ -263,6 +269,7 @@ static int parse_create_vols_args(int argc, char **argv, struct sflc_create_vols
 
 static int parse_open_vols_args(int argc, char **argv, struct sflc_open_vols_args * args)
 {
+    // sflc-raid START
     /* Check if first argument is --redundant-* option */
 	if (strcmp(argv[0], OPTION_REDUNDANT_AMONG) == 0) {
 		// Save it in the struct, and advance the args
@@ -281,6 +288,7 @@ static int parse_open_vols_args(int argc, char **argv, struct sflc_open_vols_arg
 		args->redundant_among = false;
         args->redundant_within = false;
 	}
+    // sflc-raid END
 
     /* Check that there are at least 3 arguments */
     if (argc < 3) {

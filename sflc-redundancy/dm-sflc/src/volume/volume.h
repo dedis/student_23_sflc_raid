@@ -154,9 +154,11 @@ int sflc_vol_loadFmap(sflc_Volume * vol);
 /* Stores (and encrypts) the position map to the volume's header */
 int sflc_vol_storeFmap(sflc_Volume * vol);
 
+// sflc-raid START
 s32 sflc_vol_mapSlice(sflc_Volume * vol, u32 lsi, int op); // From private to public
 int sflc_vol_processBioRedundantlyAmong(sflc_Volume * vol, sflc_Volume * copy_vol, struct bio * bio);
 int sflc_vol_processBioRedundantlyWithin(sflc_Volume * vol, struct bio * bio);
+// sflc-raid END
 
 
 #endif /* _SFLC_VOLUME_VOLUME_H_ */
