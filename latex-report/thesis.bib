@@ -1,0 +1,150 @@
+@article{Anzuoni:297353,
+      title = {Hidden Filesystem Design and Improvement},
+      author = {Anzuoni, Elia},
+      year = {2022},
+      abstract = {Plausible deniability is a strong cryptographic security  property which, in the context of data storage, offers  protection against invasive and coercive adversaries who  have the power to extort the passwords to encrypted data.  Concretely, to defend against such threats, the storage  must be formatted in such a way that multiple passwords can  be used to access it, some disclosing innocent data, others  unlocking secret contents: the user can then only reveal  passwords from the first set to the adversary, and  plausibly deny that more exist. This problem has collected  the interest of the computer security community for some  time now. Several schemes have been devised over the last  two decades, offering various levels of performance and  security. Some of them, achieving very good performance,  arguably do not provide satisfactory guarantees of  deniability. Others, accomplishing full, bulletproof  security, suffer instead from severe performance hits  (especially in terms of I/O overhead and disk space  utilisation). We propose a novel design, a scheme called  Shufflecake, which targets a more balanced compromise  between performance and security. The level of deniability  it offers, while not protecting against attacks in the most  stringent threat model, is sufficient in many practical  scenarios. On the other hand, it achieves a 99.6 percent disk  efficiency, and a 1x-3x slowdown over regular disk  encryption tools, which makes it suited for real-world  applications.},
+      url = {http://infoscience.epfl.ch/record/297353},
+}
+
+@article{DBLP:journals/corr/abs-2111-12809,
+  author       = {Chen Chen and
+                  Xiao Liang and
+                  Bogdan Carbunar and
+                  Radu Sion},
+  title        = {SoK: Plausibly Deniable Storage},
+  journal      = {CoRR},
+  volume       = {abs/2111.12809},
+  year         = {2021},
+  url          = {https://arxiv.org/abs/2111.12809},
+  eprinttype    = {arXiv},
+  eprint       = {2111.12809},
+  timestamp    = {Tue, 15 Nov 2022 14:44:33 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-2111-12809.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+@book{10.5555/1855096,
+author = {Love, Robert},
+title = {Linux Kernel Development},
+year = {2010},
+isbn = {0672329468},
+publisher = {Addison-Wesley Professional},
+edition = {3rd},
+abstract = {Linux Kernel Development details the design and implementation of the Linux kernel, presenting the content in a manner that is beneficial to those writing and developing kernel code, as well as to programmers seeking to better understand the operating system and become more efficient and productive in their coding. The book details the major subsystems and features of the Linux kernel, including its design, implementation, and interfaces. It covers the Linux kernel with both a practical and theoretical eye, which should appeal to readers with a variety of interests and needs. The author, a core kernel developer, shares valuable knowledge and experience on the 2.6 Linux kernel. Specific topics covered include process management, scheduling, time management and timers, the system call interface, memory addressing, memory management, the page cache, the VFS, kernel synchronization, portability concerns, and debugging techniques. This book covers the most interesting features of the Linux 2.6 kernel, including the CFS scheduler, preemptive kernel, block I/O layer, and I/O schedulers. The third edition of Linux Kernel Development includes new and updated material throughout the book: An all-new chapter on kernel data structures Details on interrupt handlers and bottom halves Extended coverage of virtual memory and memory allocation Tips on debugging the Linux kernel In-depth coverage of kernel synchronization and locking Useful insight into submitting kernel patches and working with the Linux kernel community}
+}
+
+@online{VMGDB,
+  author = {OneThingLab},
+  title = {Linux Kernel Debugging using VirtualBox and GDB},
+  year = 2021,
+  url = {https://blog.onethinglab.com/linux-kernel-debugging-using-virtualbox-and-gdb/},
+  urldate = {2023-06-02}
+}
+
+@online{mdadm_man,
+  title = {mdadm(8) - Linux man page},
+  url = {https://linux.die.net/man/8/mdadm},
+  urldate = {2023-06-02}
+}
+
+@online{dmesg_man,
+  title = {dmesg(1) - Linux man page},
+  url = {https://linux.die.net/man/1/dmesg},
+  urldate = {2023-06-02}
+}
+
+@online{truecrypt,
+  title = {Archived version of TrueCrypt website},
+  url = {https://archive.ph/20131224172646/http://www.truecrypt.org/},
+  urldate = {2023-06-05}
+}
+
+@online{veracrypt,
+  title = {VeraCrypt website},
+  url = {https://www.veracrypt.fr/en/Home.html},
+  urldate = {2023-06-05}
+}
+
+@inproceedings{entanglements,
+author = {Estrada-Galiñanes, Vero and Paris, Jehan-Francois and Felber, Pascal},
+year = {2016},
+month = {12},
+pages = {},
+title = {Simple Data Entanglement Layouts with High Reliability},
+doi = {10.1109/PCCC.2016.7820651}
+}
+
+@online{github,
+  title = {Project repository},
+  url = {https://github.com/dedis/student_23_sflc_raid},
+  urldate = {2023-06-06}
+}
+
+@online{oram,
+  author = {Tommaso Gagliardoni},
+  title = {An Introduction to Oblivious RAM (ORAM)},
+  year = 2020,
+  url = {https://research.kudelskisecurity.com/2020/04/22/an-introduction-to-oblivious-ram-oram/},
+  urldate = {2023-06-06}
+}
+
+@inproceedings{10.1145/2660267.2660313,
+    author = {Blass, Erik-Oliver and Mayberry, Travis and Noubir, Guevara and Onarlioglu, Kaan},
+    title = {Toward Robust Hidden Volumes Using Write-Only Oblivious RAM},
+    year = {2014},
+    isbn = {9781450329576},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/2660267.2660313},
+    doi = {10.1145/2660267.2660313},
+    abstract = {With sensitive data being increasingly stored on mobile devices and laptops, hard disk encryption is more important than ever. In particular, being able to plausibly deny that a hard disk contains certain information is a very useful and interesting research goal. However, it has been known for some time that existing ``hidden volume'' solutions, like TrueCrypt, fail in the face of an adversary who is able to observe the contents of a disk on multiple, separate occasions. In this work, we explore more robust constructions for hidden volumes and present HiVE, which is resistant to more powerful adversaries with multiple-snapshot capabilities. In pursuit of this, we propose the first security definitions for hidden volumes, and prove HiVE secure under these definitions. At the core of HiVE, we design a new write-only Oblivious RAM. We show that, when only hiding writes, it is possible to achieve ORAM with optimal O(1) communication complexity and only poly-logarithmic user memory. This is a significant improvement over existing work and an independently interesting result. We go on to show that our write-only ORAM is specially equipped to provide hidden volume functionality with low overhead and significantly increased security. Finally, we implement HiVE as a Linux kernel block device to show both its practicality and usefulness on existing platforms.},
+    booktitle = {Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security},
+    pages = {203–214},
+    numpages = {12},
+    keywords = {oblivious ram, symmetric encryption, hidden volume encryption, deniable encryption},
+    location = {Scottsdale, Arizona, USA},
+    series = {CCS '14}
+}
+
+@article{000213012,
+ author = {Kedziora, Michal and Chow, Yang-Wai and Susilo, Willy},
+ doi = {10.13052/jsn2445-9739.2017.012},
+ journal = {Software Networking},
+ number = {1},
+ pages = {241-264},
+ title = {Threat models for analyzing plausible deniability of deniable file systems},
+ year = {2017}
+}
+
+@inproceedings {268123,
+author = {Alexei Czeskis and David J. St. Hilaire and Karl Koscher and Steven D. Gribble and Bruce Schneier},
+title = {Defeating Encrypted and Deniable File Systems: {TrueCrypt} v5.1a and the Case of the Tattling {OS} and Applications},
+booktitle = {3rd USENIX Workshop on Hot Topics in Security (HotSec 08)},
+year = {2008},
+address = {San Jose, CA},
+url = {https://www.usenix.org/conference/hotsec-08/defeating-encrypted-and-deniable-file-systems-truecrypt-v51a-and-case-tattling},
+publisher = {USENIX Association},
+month = jul,
+}
+
+@inproceedings{veraOS,
+author = {Kedziora, Michal and Chow, Yang-Wai and Susilo, Willy},
+year = {2017},
+month = {06},
+pages = {3-13},
+title = {Defeating Plausible Deniability of VeraCrypt Hidden Operating Systems},
+isbn = {978-981-10-5420-4},
+doi = {10.1007/978-981-10-5421-1_1}
+}
+
+@online{fio,
+  title = {fio(1) - Linux man page},
+  url = {https://linux.die.net/man/1/fio},
+  urldate = {2023-06-07}
+}
+
+@online{ext4,
+  title = {ext4 Filesystem Documentation},
+  url = {https://www.kernel.org/doc/html/v4.19/filesystems/ext4/index.html},
+  urldate = {2023-06-08}
+}
